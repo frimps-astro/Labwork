@@ -5,6 +5,7 @@ using namespace std; //to help eliminate the repetition of standard input/output
 void mean(int numbers[]);
 void mode(int numbers[]);
 void median(int numbers[]);
+void sorting(int numbers[]);
 
 //constant value of integers to take
 const int counter = 5;
@@ -21,7 +22,7 @@ int main(){
 		cin>> numbers[i];
 	}
 	mean(numbers);
-	//mode(numbers);
+	mode(numbers);
 	median(numbers);
 
 	return 0;
@@ -42,6 +43,39 @@ int main(){
 	void median(int numbers[]){
 	//lets find the middle number
 	//lets first sort the numbers
+	sorting(numbers);
+	for(int i=0; i<counter; i++)
+		cout<<numbers[i]<<", ";
+	cout<<"The median is "<<numbers[counter/2]<<"\n";
+	}
+
+	void mode(int numbers[]){
+		sorting(numbers);
+
+		int check = numbers[0];
+		int mode = check;
+		int c = 0;
+		int p = 0;
+		for(int i=0; i<counter; i++){
+			if(check == numbers[i]){
+				c++;
+				mode = check;
+			}else{
+			if(c>p){
+				mode = numbers[i-1];//same as the previous number
+				p = c;
+				check = numbers[i];
+				c=0;
+				c++;
+			}
+			}
+		}
+
+		cout<<"The mode is "<< mode<<"\n";
+	}
+	
+	//declare a sorting function
+	 void sorting(int numbers[]){
 	for(int i=0; i<counter-1; i++){
 		 for(int j=0; j<counter-i-1; j++){
 			if(numbers[j] > numbers[j+1]){
@@ -52,11 +86,7 @@ int main(){
 		 }
 		
 	}
-	for(int i=0; i<counter; i++)
-		cout<<numbers[i]<<", ";
-	cout<<"The median is "<<numbers[counter/2]<<"\n";
-	}
-
+ }
 
 
 
