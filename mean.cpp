@@ -46,6 +46,17 @@ int main(){
 	sorting(numbers);
 	for(int i=0; i<counter; i++)
 		cout<<numbers[i]<<", ";
+
+	//finding whether the input was even
+	//median where there is even takes two middle numbers and find their average
+	double med;
+	if(counter%2 ==0){
+		int i = numbers[counter/2];
+		int k = numbers[(counter/2)-1];
+		med = (i+k)/2.0; // to maintain the fraction part divided by decimal(2.0)
+	}else{
+		med = numbers[counter/2];
+	}
 	cout<<"The median is "<<numbers[counter/2]<<"\n";
 	}
 
@@ -59,7 +70,6 @@ int main(){
 		for(int i=0; i<counter; i++){
 			if(check == numbers[i]){
 				c++;
-				mode = check;
 			}else{
 			if(c>p){
 				mode = numbers[i-1];//same as the previous number
@@ -67,6 +77,10 @@ int main(){
 				check = numbers[i];
 				c=0;
 				c++;
+			}else{
+			check = numbers[i];
+			c=0;
+			c++;
 			}
 			}
 		}
